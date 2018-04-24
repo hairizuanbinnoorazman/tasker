@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/hairizuanbinnoorazman/tasker/asana"
+	"github.com/hairizuanbinnoorazman/tasker/generic"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -24,7 +25,8 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			token := viper.Get("asana_personal_token").(string)
 			if proj == "" {
-				asana.ListProjects(token)
+				// asana.ListProjects(token)
+				generic.ListProjects(asana.Asana{Token: token})
 			} else {
 				asana.ListTasks(token, proj)
 			}
