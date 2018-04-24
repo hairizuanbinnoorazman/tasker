@@ -37,6 +37,11 @@ curl -X GET -H "Authorization: Bearer <personal_access_token>" -H "Content-Type:
 
 To try and use the development version
 
-```
+```bash
+# Go build command would create the binary of the CLI Tool
+# It would generate a binary called tasker
+go build
 
+# Run the above tasker command if one so wishes (Not all are implemented yet)
+./tasker
 ```
