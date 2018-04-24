@@ -28,3 +28,15 @@ tasker cp -originTool="asana" -id="12" -destTool="github"
 curl -X GET -H "Authorization: Bearer <personal_access_token>" -H "Content-Type: application/json" https://app.asana.com/api/1.0/projects
 
 ```
+
+# Contributing to the project
+
+**Warning**: Project is still not stable - there will be plenty of internal API changes required in order to ensure compatability and smoother experience for users
+
+## Quick start
+
+To try and use the development version
+
+```
+
+```
