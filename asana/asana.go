@@ -14,3 +14,15 @@ func (a Asana) ListProjects() ([]generic.Project, error) {
 	err := ListProjects(token)
 	return []generic.Project{}, err
 }
+
+func (a Asana) ListTasks(projectID string) ([]generic.Task, error) {
+	token := a.Token
+	err := ListTasks(token, projectID)
+	return []generic.Task{}, err
+}
+
+func (a Asana) CreateTask(projectID, name string) (generic.Task, error) {
+	token := a.Token
+	err := CreateTask(token, name, projectID)
+	return generic.Task{}, err
+}
