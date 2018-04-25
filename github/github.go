@@ -1,5 +1,5 @@
-// Package asana provides the functionality to access the asana API to manipulate and obtain the list from the tool
-package asana
+// Package github provides the functionality to access the asana API to manipulate and obtain the list from the tool
+package github
 
 import "github.com/hairizuanbinnoorazman/tasker/generic"
 
