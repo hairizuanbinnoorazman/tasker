@@ -5,7 +5,7 @@ package generic
 type PlatformActions interface {
 	ListProjects() ([]Project, error)
 	ListTasks(projectID string) ([]Task, error)
-	// ListUsers(projectID string) ([]User, error)
+	ListUsers(projectID string) ([]User, error)
 	CreateTask(projectID, taskName string) (Task, error)
 	// CompleteTask(projectID, taskID string) (Task, error)
 	// AssignTask(projectID, taskID, userID string) (Task, error)
@@ -18,6 +18,10 @@ func ListProjects(actions PlatformActions) ([]Project, error) {
 
 func ListTasks(actions PlatformActions, projectID string) ([]Task, error) {
 	return actions.ListTasks(projectID)
+}
+
+func ListUsers(actions PlatformActions, projectID string) ([]User, error) {
+	return actions.ListUsers(projectID)
 }
 
 func CreateTask(actions PlatformActions, projectID, taskName string) (Task, error) {
