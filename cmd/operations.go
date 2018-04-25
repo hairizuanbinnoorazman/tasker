@@ -14,7 +14,7 @@ var (
 		Long:  `Not available yet`,
 		Run: func(cmd *cobra.Command, args []string) {
 			token := viper.Get("asana_personal_token").(string)
-			asana.CreateTask(token, name, proj)
+			generic.CreateTask(asana.Asana{Token: token}, proj, name)
 		},
 	}
 
@@ -25,10 +25,9 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			token := viper.Get("asana_personal_token").(string)
 			if proj == "" {
-				// asana.ListProjects(token)
 				generic.ListProjects(asana.Asana{Token: token})
 			} else {
-				asana.ListTasks(token, proj)
+				generic.ListTasks(asana.Asana{Token: token}, proj)
 			}
 		},
 	}
