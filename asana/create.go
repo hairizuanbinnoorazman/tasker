@@ -17,7 +17,7 @@ type TaskRequest struct {
 	Name     string `json:"name"`
 }
 
-func CreateTask(token, name, project string) error {
+func createTask(token, name, project string) error {
 	projectTaskURL := asanaURL + "tasks"
 
 	client := &http.Client{}
