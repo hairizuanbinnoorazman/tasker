@@ -7,9 +7,9 @@ type PlatformActions interface {
 	ListTasks(projectID string) ([]Task, error)
 	ListUsers(projectID string) ([]User, error)
 	CreateTask(projectID, taskName string) (Task, error)
-	// CompleteTask(projectID, taskID string) (Task, error)
-	// AssignTask(projectID, taskID, userID string) (Task, error)
-	// AssignLabel(projectID, taskID, label string) (Task, error)
+	CompleteTask(projectID, taskID string) (Task, error)
+	AssignTask(projectID, taskID, userID string) (Task, error)
+	AssignLabel(projectID, taskID, label string) (Task, error)
 }
 
 func ListProjects(actions PlatformActions) ([]Project, error) {
@@ -26,4 +26,16 @@ func ListUsers(actions PlatformActions, projectID string) ([]User, error) {
 
 func CreateTask(actions PlatformActions, projectID, taskName string) (Task, error) {
 	return actions.CreateTask(projectID, taskName)
+}
+
+func CompleteTask(actions PlatformActions, projectID, taskID string) (Task, error) {
+	return actions.CompleteTask(projectID, taskID)
+}
+
+func AssignTask(actions PlatformActions, projectID, taskID, userID string) (Task, error) {
+	return actions.AssignTask(projectID, taskID, userID)
+}
+
+func AssignLabel(actions PlatformActions, projectID, taskID, label string) (Task, error) {
+	return actions.AssignLabel(projectID, taskID, label)
 }
