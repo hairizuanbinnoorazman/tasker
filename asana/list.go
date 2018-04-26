@@ -16,7 +16,6 @@ type genericItem struct {
 	Name string `json:"name"`
 }
 
-// ListProjects function read list of tasks available
 func listProjects(token string) error {
 	projectURL := asanaURL + "projects"
 
@@ -47,7 +46,6 @@ func listProjects(token string) error {
 	return nil
 }
 
-// ListTasks functions reads out a list of tasks based on a project ID
 func listTasks(token, project string) error {
 	projectTaskURL := asanaURL + fmt.Sprintf("projects/%s/tasks", project)
 
