@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-type GenericRequest struct {
-	Data TaskRequest `json:"data"`
+type genericRequest struct {
+	Data taskRequest `json:"data"`
 }
 
-type TaskRequest struct {
+type taskRequest struct {
 	Projects string `json:"projects"`
 	Name     string `json:"name"`
 }
@@ -22,8 +22,8 @@ func createTask(token, name, project string) error {
 
 	client := &http.Client{}
 
-	taskRequest := TaskRequest{Projects: project, Name: name}
-	reqBody := GenericRequest{Data: taskRequest}
+	taskRequestInstance := taskRequest{Projects: project, Name: name}
+	reqBody := genericRequest{Data: taskRequestInstance}
 	reqBodyByte, _ := json.Marshal(reqBody)
 	req, err := http.NewRequest("POST", projectTaskURL, bytes.NewBuffer(reqBodyByte))
 	if err != nil {

@@ -7,11 +7,11 @@ import (
 	"net/http"
 )
 
-type GenericList struct {
-	Data []GenericItem `json:"data"`
+type genericList struct {
+	Data []genericItem `json:"data"`
 }
 
-type GenericItem struct {
+type genericItem struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
@@ -36,7 +36,7 @@ func listProjects(token string) error {
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	var parsedResponse GenericList
+	var parsedResponse genericList
 	errJSON := json.Unmarshal(body, &parsedResponse)
 	if errJSON != nil {
 		fmt.Println("Error in unmarshalling content")
@@ -67,7 +67,7 @@ func listTasks(token, project string) error {
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	var parsedResponse GenericList
+	var parsedResponse genericList
 	errJSON := json.Unmarshal(body, &parsedResponse)
 	if errJSON != nil {
 		fmt.Println("Error in unmarshalling content")
