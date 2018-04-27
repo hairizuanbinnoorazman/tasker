@@ -4,44 +4,32 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 )
 
-func getProject(token, project string) error {
-	projectURL := asanaURL + fmt.Sprintf("projects/%s", project)
+type project struct {
+	Name  string      `json:"name"`
+	ID    string      `json:"id"`
+	Owner genericItem `json:"owner"`
+	Team  genericItem `json:"team"`
+}
 
-	client := &http.Client{}
-
-	req, err := http.NewRequest("GET", projectURL, nil)
+func getProject(token, projectID string) (project, error) {
+	projectURL := asanaURL + fmt.Sprintf("projects/%s", projectID)
+	resp, err := genericHTTPGet(token, projectURL)
 	if err != nil {
-		fmt.Println("Error creating new request")
-		return err
-	}
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Bearer "+token)
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println("Error in getting response")
-		return err
+		return project{}, err
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 
-	type projectDetails struct {
-		Team genericItem `json:"team"`
+	type response struct {
+		Data project `json:"data"`
 	}
 
-	type overallProjectDetails struct {
-		Data projectDetails `json:"data"`
-	}
-
-	var parsedResponse overallProjectDetails
+	var parsedResponse response
 	errJSON := json.Unmarshal(body, &parsedResponse)
 	if errJSON != nil {
-		fmt.Println("Error in unmarshalling content")
-		return errJSON
+		return project{}, errJSON
 	}
-	value, _ := json.MarshalIndent(parsedResponse, "", "\t")
-	fmt.Println(string(value))
-	return nil
+	return parsedResponse.Data, nil
 }
