@@ -27,8 +27,8 @@ var (
 			if proj == "" {
 				generic.ListProjects(asana.Asana{Token: token})
 			} else {
-				generic.ListTasks(asana.Asana{Token: token}, proj)
-				// generic.ListUsers(asana.Asana{Token: token}, proj)
+				// generic.ListTasks(asana.Asana{Token: token}, proj)
+				generic.ListUsers(asana.Asana{Token: token}, proj)
 			}
 		},
 	}
