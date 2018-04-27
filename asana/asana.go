@@ -37,7 +37,7 @@ func (a Asana) CreateTask(projectID, name string) (generic.Task, error) {
 // ListUsers implements an internal call to list users in Asana for a project
 func (a Asana) ListUsers(projectID string) ([]generic.User, error) {
 	token := a.Token
-	err := listUsers(token, projectID)
+	err := listUsersByProject(token, projectID)
 	return []generic.User{}, err
 }
 
