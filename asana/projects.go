@@ -8,7 +8,7 @@ import (
 
 type project struct {
 	Name  string      `json:"name"`
-	ID    string      `json:"id"`
+	ID    int         `json:"id"`
 	Owner genericItem `json:"owner"`
 	Team  genericItem `json:"team"`
 }
