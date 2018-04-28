@@ -43,6 +43,8 @@ func (a Asana) ListUsers(projectID string) ([]generic.User, error) {
 
 // CompleteTask implements an internal call to set a task as complete in Asana
 func (a Asana) CompleteTask(projectID, taskID string) (generic.Task, error) {
+	token := a.Token
+	completeTask(token, taskID)
 	return generic.Task{}, nil
 }
 
