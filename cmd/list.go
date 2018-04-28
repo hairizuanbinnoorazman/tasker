@@ -1,9 +1,10 @@
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/hairizuanbinnoorazman/tasker/asana"
+	"github.com/hairizuanbinnoorazman/tasker/generic"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var (
@@ -12,7 +13,8 @@ var (
 		Short: "Use this command to list tasks",
 		Long:  `Not available yet`,
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Prepping")
+			token := viper.Get("asana_personal_token").(string)
+			generic.ListTasks(asana.Service{Token: token}, proj)
 		},
 	}
 
@@ -21,7 +23,8 @@ var (
 		Short: "Use this command to list tasks",
 		Long:  `Not available yet`,
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Prepping")
+			token := viper.Get("asana_personal_token").(string)
+			generic.ListProjects(asana.Service{Token: token})
 		},
 	}
 
@@ -30,7 +33,8 @@ var (
 		Short: "Use this command to list tasks",
 		Long:  `Not available yet`,
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Prepping")
+			token := viper.Get("asana_personal_token").(string)
+			generic.ListUsers(asana.Service{Token: token}, proj)
 		},
 	}
 )
