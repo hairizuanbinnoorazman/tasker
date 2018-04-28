@@ -61,6 +61,7 @@ func init() {
 	listCmd.AddCommand(listProjectCmd)
 	listCmd.AddCommand(listUsersCmd)
 	opsCmdFlags()
+	listCmdFlags()
 
 	rootCmd.AddCommand(versionCmd)
 }
