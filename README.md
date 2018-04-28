@@ -5,21 +5,17 @@ Create tasks from CLI and post it to task management platforms
 
 ```bash
 # Create task
-tasker create -tool="asana" -proj=1234 -name="This is a test task" -desc="We would need to try building this product properly" -label="low priority"
+tasker create task -tool="asana" -proj=1234 -name="This is a test task" -desc="We would need to try building this product properly"
 
 # List projects
-tasker list -tool="asana"
+tasker list projects -tool="asana"
 
 # List tasks for a project
 # Project would usually refer to id
-tasker list -tool="asana" -proj=1234
+tasker list tasks -tool="asana" -proj=1234
 
 # Create task for multiple platforms at the same time
-tasker create -name="This is a test task" -desc="We would need to try building this product properly" -label="low priority" -tool="asana,github"
-
-# Copy task between platforms
-# Needs to be amde easier though
-tasker cp -originTool="asana" -id="12" -destTool="github"
+tasker create -name="This is a test task" -desc="We would need to try building this product properly" -tool="asana,github"
 ```
 
 # curl Commands for development work
