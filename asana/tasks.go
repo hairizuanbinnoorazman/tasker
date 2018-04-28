@@ -1,5 +1,11 @@
 package asana
 
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+)
+
 type task struct {
 	ID             int           `json:"id"`
 	Assignee       genericItem   `json:"assignee"`
@@ -10,7 +16,25 @@ type task struct {
 	Tags           []genericItem `json:"tags"`
 }
 
-func updateStatus(token, projectID string) error {
+func completeTask(token, taskID string) error {
+	taskURL := asanaURL + fmt.Sprintf("tasks/%v", taskID)
+
+	type updateTaskField struct {
+		Completed bool `json:"completed"`
+	}
+
+	type updateTaskRequest struct {
+		Data updateTaskField `json:"data"`
+	}
+
+	reqBody := updateTaskRequest{Data: updateTaskField{Completed: true}}
+	reqJSON, _ := json.Marshal(reqBody)
+	resp, err := genericHTTPPut(token, taskURL, bytes.NewReader(reqJSON))
+	if err != nil {
+		return err
+	}
+
+	defer resp.Body.Close()
 	return nil
 }
 
