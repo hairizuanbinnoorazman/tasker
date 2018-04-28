@@ -34,20 +34,6 @@ var (
 		Use:   "list",
 		Short: "Use this command to list tasks",
 		Long:  `Not available yet`,
-		// Run: func(cmd *cobra.Command, args []string) {
-		// 	token := viper.Get("asana_personal_token").(string)
-		// 	for a, val := range args {
-		// 		fmt.Println(a)
-		// 		fmt.Println(val)
-		// 	}
-		// 	fmt.Println(token)
-		// 	// if proj == "" {
-		// 	// 	generic.ListProjects(asana.Asana{Token: token})
-		// 	// } else {
-		// 	// 	// generic.ListTasks(asana.Asana{Token: token}, proj)
-		// 	// 	generic.ListUsers(asana.Asana{Token: token}, proj)
-		// 	// }
-		// },
 	}
 )
 
