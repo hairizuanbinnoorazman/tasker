@@ -35,6 +35,12 @@ var (
 		Short: "Use this command to list tasks",
 		Long:  `Not available yet`,
 	}
+
+	closeCmd = &cobra.Command{
+		Use:   "close",
+		Short: "Use this command to set tasks to complete or to close projects which are no longer relevant",
+		Long:  `Not available yet`,
+	}
 )
 
 func init() {
