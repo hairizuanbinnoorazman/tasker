@@ -56,6 +56,9 @@ func init() {
 	listCmdFlags()
 
 	rootCmd.AddCommand(versionCmd)
+
+	rootCmd.AddCommand(closeCmd)
+	closeCmd.AddCommand(closeTaskCmd)
 }
 
 // Execute cli commands
