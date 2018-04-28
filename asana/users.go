@@ -17,7 +17,6 @@ func listUsersByTeam(token, teamID string) error {
 	body, _ := ioutil.ReadAll(resp.Body)
 
 	var parsedResponse genericList
-	fmt.Println(string(body))
 	errJSON := json.Unmarshal(body, &parsedResponse)
 	if errJSON != nil {
 		fmt.Println("Error in unmarshalling content")
