@@ -9,3 +9,15 @@ type task struct {
 	Notes          string        `json:"notes"`
 	Tags           []genericItem `json:"tags"`
 }
+
+func updateStatus(token, projectID string) error {
+	return nil
+}
+
+func updateAssignee(token, projectID string) error {
+	return nil
+}
+
+func updateLabel(token, projectID string) error {
+	return nil
+}
