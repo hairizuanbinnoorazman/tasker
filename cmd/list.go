@@ -38,3 +38,8 @@ var (
 		},
 	}
 )
+
+func listCmdFlags() {
+	listTaskCmd.Flags().StringVar(&proj, "proj", "", "No help available")
+	listUsersCmd.Flags().StringVar(&proj, "proj", "", "No help available")
+}
