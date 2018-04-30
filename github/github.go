@@ -3,32 +3,32 @@ package github
 
 import "github.com/hairizuanbinnoorazman/tasker/generic"
 
-type Github struct{}
+type Service struct{}
 
-func (a Github) ListProjects() ([]generic.Project, error) {
+func (a Service) ListProjects() ([]generic.Project, error) {
 	return []generic.Project{}, nil
 }
 
-func (a Github) ListTasks(projectID string) ([]generic.Task, error) {
+func (a Service) ListTasks(projectID string) ([]generic.Task, error) {
 	return []generic.Task{}, nil
 }
 
-func (a Github) CreateTask(projectID, name string) (generic.Task, error) {
+func (a Service) CreateTask(projectID, name string) (generic.Task, error) {
 	return generic.Task{}, nil
 }
 
-func (a Github) ListUsers(projectID string) ([]generic.User, error) {
+func (a Service) ListUsers(projectID string) ([]generic.User, error) {
 	return []generic.User{}, nil
 }
 
-func (a Github) CompleteTask(projectID, taskID string) (generic.Task, error) {
+func (a Service) CompleteTask(projectID, taskID string) (generic.Task, error) {
 	return generic.Task{}, nil
 }
 
-func (a Github) AssignTask(projectID, taskID, userID string) (generic.Task, error) {
+func (a Service) AssignTask(projectID, taskID, userID string) (generic.Task, error) {
 	return generic.Task{}, nil
 }
 
-func (a Github) AssignLabel(projectID, taskID, label string) (generic.Task, error) {
+func (a Service) AssignLabel(projectID, taskID, label string) (generic.Task, error) {
 	return generic.Task{}, nil
 }
