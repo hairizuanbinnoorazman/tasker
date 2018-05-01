@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 )
 
-func listTags(token, projectID string) ([]genericItem, error) {
+func listTags(token string) ([]genericItem, error) {
 	tagsURL := "https://app.asana.com/api/1.0/tags"
 
 	resp, respErr := genericHTTPGet(token, tagsURL)
@@ -27,8 +27,8 @@ func listTags(token, projectID string) ([]genericItem, error) {
 	return tags.Data, nil
 }
 
-func getTagID(token, projectID, tagName string) (int, error) {
-	tags, err := listTags(token, projectID)
+func getTagID(token, tagName string) (int, error) {
+	tags, err := listTags(token)
 	if err != nil {
 		return 0, err
 	}
