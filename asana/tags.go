@@ -2,6 +2,7 @@ package asana
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 )
 
@@ -24,4 +25,17 @@ func listTags(token, projectID string) ([]genericItem, error) {
 		return nil, errJSON
 	}
 	return tags.Data, nil
+}
+
+func getTagID(token, projectID, tagName string) (int, error) {
+	tags, err := listTags(token, projectID)
+	if err != nil {
+		return 0, err
+	}
+	for _, val := range tags {
+		if tagName == val.Name {
+			return val.ID, nil
+		}
+	}
+	return 0, errors.New("Tag not found")
 }
