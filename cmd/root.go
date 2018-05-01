@@ -13,6 +13,7 @@ var (
 	desc    string
 	label   string
 	tool    string
+	task    string
 	proj    string
 
 	rootCmd = &cobra.Command{
@@ -32,14 +33,24 @@ var (
 
 	listCmd = &cobra.Command{
 		Use:   "list",
-		Short: "Use this command to list tasks",
-		Long:  `Not available yet`,
+		Short: "Use this command to list entities within a task management system",
+		Long: `The list command allows one to list entities such as projects, tasks as well as users 
+		that are part of a project. After listing out the entities, one would then be able to utilize other 
+		aspects of the tasker cli tool to be able to manipulat the task lists accordingly.`,
 	}
 
 	closeCmd = &cobra.Command{
 		Use:   "close",
-		Short: "Use this command to set tasks to complete or to close projects which are no longer relevant",
-		Long:  `Not available yet`,
+		Short: "Use this command to set tasks to complete or to close tasks which are no longer relevant",
+		Long: `This command allows you close tasks; however, a caveat here is that it kind of requires you 
+		to run a list task command first to get the task id. With that, we then have th task ID which we 
+		can then utilize to close issues/tasks.`,
+	}
+
+	assignCmd = &cobra.Command{
+		Use:   "assign",
+		Short: "Use this command to be able to assign tags or users to a task",
+		Long:  `This command allows us to assign tags to users.`,
 	}
 )
 
@@ -59,6 +70,8 @@ func init() {
 
 	rootCmd.AddCommand(closeCmd)
 	closeCmd.AddCommand(closeTaskCmd)
+
+	rootCmd.AddCommand(assignCmd)
 }
 
 // Execute cli commands
