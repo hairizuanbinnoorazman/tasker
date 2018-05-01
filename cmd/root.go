@@ -72,6 +72,7 @@ func init() {
 	closeCmd.AddCommand(closeTaskCmd)
 
 	rootCmd.AddCommand(assignCmd)
+	assignCmd.AddCommand(assignLabelCmd)
 	assignCmdFlags()
 }
 
