@@ -56,5 +56,7 @@ func (a Service) AssignTask(projectID, taskID, userID string) (generic.Task, err
 
 // AssignLabel implements an internal call to assign labels to task
 func (a Service) AssignLabel(projectID, taskID, label string) (generic.Task, error) {
-	return generic.Task{}, nil
+	token := a.Token
+	err := updateLabel(token, taskID, label)
+	return generic.Task{}, err
 }
