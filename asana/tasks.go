@@ -42,6 +42,30 @@ func updateAssignee(token, projectID string) error {
 	return nil
 }
 
-func updateLabel(token, projectID string) error {
+func updateLabel(token, taskID, labelName string) error {
+	labelID, err := getTagID(token, labelName)
+	if err != nil {
+		return err
+	}
+
+	type tagUpdate struct {
+		Tag int `json:"tag"`
+	}
+
+	type tagUpdateWrapper struct {
+		Data tagUpdate `json:"data"`
+	}
+
+	updateBody := tagUpdateWrapper{Data: tagUpdate{Tag: labelID}}
+	updateBodyBytes, err := json.Marshal(updateBody)
+	if err != nil {
+		return err
+	}
+
+	updateTagURL := fmt.Sprintf("https://app.asana.com/api/1.0/tasks/%v/addTag", taskID)
+	_, respErr := genericHTTPPost(token, updateTagURL, bytes.NewReader(updateBodyBytes))
+	if respErr != nil {
+		return respErr
+	}
 	return nil
 }
