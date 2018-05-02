@@ -3,6 +3,8 @@ package github
 
 import "github.com/hairizuanbinnoorazman/tasker/generic"
 
+var githubURL = "https://api.github.com"
+
 type Service struct{}
 
 func (a Service) ListProjects() ([]generic.Project, error) {
