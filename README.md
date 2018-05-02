@@ -20,9 +20,16 @@ tasker create -name="This is a test task" -desc="We would need to try building t
 
 # curl Commands for development work
 
+Example of testing with asana apis
+
 ```bash
 curl -X GET -H "Authorization: Bearer <personal_access_token>" -H "Content-Type: application/json" https://app.asana.com/api/1.0/projects
+```
 
+Example of testing with github apis
+
+```bash
+curl -X GET https://api.github.com/issues -H "Accept: application/vnd.github.v3+json" -H "Authorization: token <access token>"
 ```
 
 # Contributing to the project
