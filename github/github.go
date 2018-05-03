@@ -34,6 +34,7 @@ func (a Service) CreateTask(projectID, name string) (generic.Task, error) {
 	return generic.Task{}, nil
 }
 
+// ListUsers in the context of the Github tasker package revolves around the concept of listing users for a repo
 func (a Service) ListUsers(projectID string) ([]generic.User, error) {
 	return []generic.User{}, nil
 }
