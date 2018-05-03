@@ -1,7 +1,12 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
+	"os/user"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -52,6 +57,65 @@ var (
 		Short: "Use this command to be able to assign tags or users to a task",
 		Long:  `This command allows us to assign tags to users.`,
 	}
+
+	initCmd = &cobra.Command{
+		Use:   "init",
+		Short: "Use this command to initialize configurations in the default .tasker folder",
+		Long: `The init command would create a config.json file in the .tasker folder of your home directory.
+		This would allow the configuration to be used everywhere in your computer. In order to fully utilize the 
+		cli, you would also need to add tasker into the path arguments as well.`,
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println("Initializing configuration")
+
+			usr, err := user.Current()
+			if err != nil {
+				fmt.Println("Unable to retrive current user")
+				return
+			}
+
+			folderPath := filepath.Join(usr.HomeDir, ".tasker")
+			filePath := filepath.Join(folderPath, "config.json")
+
+			_, err = os.Stat(filePath)
+			if err == nil {
+				fmt.Println("File exists. Will not re-initialize")
+				return
+			}
+
+			err = os.MkdirAll(folderPath, os.ModePerm)
+			if err != nil {
+				fmt.Println(err.Error())
+				fmt.Println("Folder unable to be created")
+				return
+			}
+
+			initialConfiguration := Config{
+				PrimaryTool: ToolConfig{
+					Name:             "asana",
+					Token:            "example-token",
+					DefaultProjectID: "example-default-project",
+				},
+				SecondaryTools: []ToolConfig{
+					ToolConfig{
+						Name:             "github",
+						Token:            "example-token",
+						DefaultProjectID: "example-default-project",
+					},
+				},
+			}
+
+			initialConfigBytes, errByte := json.MarshalIndent(initialConfiguration, "", "\t")
+			if errByte != nil {
+				fmt.Println("Unable to retrive bytestrem of configuration")
+				return
+			}
+			fileWriteErr := ioutil.WriteFile(filePath, initialConfigBytes, 0644)
+			if fileWriteErr != nil {
+				fmt.Println(fileWriteErr.Error())
+				return
+			}
+		},
+	}
 )
 
 func init() {
@@ -68,6 +132,8 @@ func init() {
 
 	rootCmd.AddCommand(versionCmd)
 
+	rootCmd.AddCommand(initCmd)
+
 	rootCmd.AddCommand(closeCmd)
 	closeCmd.AddCommand(closeTaskCmd)
 
@@ -82,18 +148,23 @@ func Execute() {
 }
 
 func initConfig() {
+	usr, err := user.Current()
+	if err != nil {
+		panic("Error in trying to get current user.")
+	}
+
 	if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
-		viper.SetConfigFile("./config.json")
+		viper.SetConfigFile(fmt.Sprintf("%v/.tasker/config.json", usr.HomeDir))
 	}
 
-	err := viper.ReadInConfig()
-	if err == nil {
+	errRead := viper.ReadInConfig()
+	if errRead == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 		fmt.Println()
 	} else {
-		fmt.Println(err.Error())
+		fmt.Println(errRead.Error())
 	}
 }
