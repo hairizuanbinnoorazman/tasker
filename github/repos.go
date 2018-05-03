@@ -7,8 +7,9 @@ import (
 )
 
 type simpleRepo struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID       int    `json:"id"`
+	FullName string `json:"full_name"`
+	Name     string `json:"name"`
 }
 
 func listRepos(token string) error {
