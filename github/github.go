@@ -1,4 +1,8 @@
 // Package github provides the functionality to access the asana API to manipulate and obtain the list from the tool
+//
+// A point to take note:
+// The ID that is return in github responses represent nothing; The reference to issues and repos still take into
+// account of github's url
 package github
 
 import "github.com/hairizuanbinnoorazman/tasker/generic"
