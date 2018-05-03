@@ -2,7 +2,7 @@
 //
 // A point to take note:
 // The ID that is return in github responses represent nothing; The reference to issues and repos still take into
-// account of github's url
+// account of github's url structure of organization and the repo's name.
 package github
 
 import "github.com/hairizuanbinnoorazman/tasker/generic"
@@ -23,12 +23,13 @@ func (a Service) ListProjects() ([]generic.Project, error) {
 	return []generic.Project{}, nil
 }
 
-// ListTasks in the context of the Githb tasker package revolves around the concept ofn issues
+// ListTasks in the context of the Github tasker package revolves around the concept of issues
 // This command would list down list of issues of the repo.
 func (a Service) ListTasks(projectID string) ([]generic.Task, error) {
 	return []generic.Task{}, nil
 }
 
+// CreateTask in the context of the Github tasker package revolves aroudn the concept of creating new issues
 func (a Service) CreateTask(projectID, name string) (generic.Task, error) {
 	return generic.Task{}, nil
 }
