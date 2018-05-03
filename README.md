@@ -29,7 +29,8 @@ curl -X GET -H "Authorization: Bearer <personal_access_token>" -H "Content-Type:
 Example of testing with github apis
 
 ```bash
-curl -X GET https://api.github.com/issues -H "Accept: application/vnd.github.v3+json" -H "Authorization: token <access token>"
+curl -X GET -H "Accept: application/vnd.github.v3+json" -H "Authorization: token <access token>" https://api.github.com/issues
+curl -X GET -H "Accept: application/vnd.github.v3+json" -H "Authorization: token <access token>" https://api.github.com/repos/hairizuanbinnoorazman/tasker/issues
 ```
 
 # Contributing to the project
